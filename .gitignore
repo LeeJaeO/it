@@ -1,0 +1,51 @@
+# ---------------------
+# YOLOv3 model files
+# ---------------------
+yolov3.cfg
+yolov3.weights
+*.weights
+*.cfg
+
+# If stored in directories
+weights/
+models/
+checkpoints/
+
+# ---------------------
+# Python cache / virtual env
+# ---------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.pickle
+
+# Virtual environment
+venv/
+.venv/
+
+# ---------------------
+# Jupyter Notebook checkpoints
+# ---------------------
+.ipynb_checkpoints/
+
+# ---------------------
+# Logs / results
+# ---------------------
+*.log
+runs/
+results/
+output/
+
+# ---------------------
+# OS / IDE files
+# ---------------------
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# VSCode
+.vscode/
