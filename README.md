@@ -3,13 +3,13 @@
 
 Azure Kinect DK(Depth Camera)와 MediaPipe를 활용하여 사람을 검출하고, 3D 좌표(거리)를 측정하여 출입을 관리하는 시스템입니다.
 
-## 🛠 하드웨어 요구사항 (Hardware Requirements)
+## 하드웨어 요구사항 (Hardware Requirements)
 * **카메라:** Azure Kinect DK
 * **PC:** Windows 10/11
 * **연결:** USB 3.0 포트 (파란색) 필수, 전원 어댑터 연결 필수
 * **GPU:** NVIDIA GPU 권장 (Body Tracking 사용 시)
 
-## 📦 필수 설치 프로그램 (Prerequisites)
+## 필수 설치 프로그램 (Prerequisites)
 프로젝트 실행 전, 아래 프로그램들이 반드시 설치되어 있어야 합니다. **모두 기본 경로(C:\Program Files\...)에 설치해 주세요.**
 
 1. **Azure Kinect Sensor SDK v1.4.1**
@@ -27,7 +27,7 @@ Azure Kinect DK(Depth Camera)와 MediaPipe를 활용하여 사람을 검출하�
 
 ---
 
-## 🚀 개발 환경 설정 (Installation)
+## 개발 환경 설정 (Installation)
 
 이 프로젝트는 **VS Code**와 **Python 3.10+** 환경에서 테스트되었습니다.
 (경로 오류 방지를 위해 `C:\kinect_project` 와 같은 단순한 영어 경로 사용을 권장합니다.)
