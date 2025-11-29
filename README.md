@@ -1,7 +1,7 @@
-# it
-#  얼굴 인식 학교 출입 시스템
+# IT
+# 얼굴 인식 학교 출입 시스템 (School Access System)
 
-Azure Kinect DK(Depth Camera)와 MediaPipe를 활용하여 사람을 검출하고, 3D 좌표(거리)를 측정하여 출입을 관리하는 시스템입니다.
+Azure Kinect DK(Depth Camera)와 MediaPipe를 활용하여 사람을 검출하고, **1m ~ 3m 유효 거리** 내의 사용자만 인식하여 출입을 관리하는 Physical AI 시스템입니다.
 
 ## 하드웨어 요구사항 (Hardware Requirements)
 * **카메라:** Azure Kinect DK
@@ -38,6 +38,30 @@ VS Code 터미널에서 다음 명령어로 가상 환경을 생성하고 활성
 ```bash
 # 가상 환경 생성
 python -m venv venv
+
+라이브러리 설치 (Dependencies)
+가상 환경이 활성화된 상태((venv) 표시 확인)에서 필요한 패키지를 설치합니다.
+
+
+pip install opencv-python pyk4a mediapipe numpy
+Note: 설치 중 Building wheel for pyk4a failed 오류가 발생하면, 위 '필수 설치 프로그램'의 C++ Build Tools가 제대로 설치되었는지 확인하세요.
+
+
+Azure Kinect의 전원과 USB를 PC에 연결합니다.
+
+실행 중인 다른 키넥트 프로그램(예: Azure Kinect Viewer)이 있다면 종료합니다.
+
+아래 명령어로 실행합니다.
+
+python main.py
+
+
+#1. 본 프로젝트에서는 MediaPipe 사용
+CPU 환경에서도 실시간 처리가 가능할 만큼 가볍고 빠릅니다. 출입 시스템의 핵심인 '얼굴'을 직접 검출하므로 얼굴 인식 단계로 넘어가기 유리합니다.
+더 정밀한 3D 움직임 분석이 필요하다면 Azure Kinect Body Tracking SDK를 사용하는 것이 가장 적합합니다.
+
+#2. 코드 내에서 if 1.0 <= z_meter <= 3.0: 조건을 사용하여,
+유효 범위 밖(예: 4m)에 있는 사람은 바운딩 박스를 그리지 않고 무시하도록 구현되어 있습니다. 이를 통해 불필요한 연산을 줄이고 출입 의사가 있는 사용자만 선별합니다.
 
 # 가상 환경 활성화 (Windows)
 .\venv\Scripts\activate
