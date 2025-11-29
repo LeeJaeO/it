@@ -20,7 +20,7 @@ Azure Kinect DK(Depth Camera)와 MediaPipe를 활용하여 사람을 검출하�
    * [다운로드 링크](https://www.microsoft.com/en-us/download/details.aspx?id=100942)
    * `pyk4a` 라이브러리 구동을 위해 필요.
 
-3. **Microsoft Visual C++ Build Tools (필수 ⭐)**
+3. **Microsoft Visual C++ Build Tools (필수)**
    * `pyk4a` 라이브러리 빌드를 위해 C++ 컴파일러가 필요합니다.
    * [다운로드 링크](https://visualstudio.microsoft.com/ko/downloads/) (Build Tools for Visual Studio 2022)
    * **설치 방법:** 설치 프로그램 실행 → **'C++를 사용한 데스크톱 개발(Desktop development with C++)'** 체크 → 설치 → **재부팅**.
