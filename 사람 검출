@@ -143,3 +143,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+❌ 오류 발생: Unsupported image type, must be 8bit gray or RGB image.
