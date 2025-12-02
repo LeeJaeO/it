@@ -25,7 +25,7 @@ Azure Kinect DK(Depth Camera)와 MediaPipe를 활용하여 사람을 검출하�
    * [다운로드 링크](https://visualstudio.microsoft.com/ko/downloads/) (Build Tools for Visual Studio 2022)
    * **설치 방법:** 설치 프로그램 실행 → **'C++를 사용한 데스크톱 개발(Desktop development with C++)'** 체크 → 설치 → **재부팅**.
 
----
+
 
 ## 개발 환경 설정 (Installation)
 
@@ -134,3 +134,9 @@ python -m venv venv
 .\venv\Scripts\activate
 pip install opencv-python pyk4a face_recognition numpy
 # dlib 설치 실패 시 .whl 파일로 수동 설치 권장
+
+
+25.12.02
+안티스푸핑 완료
+거리에 따른 사람
+
