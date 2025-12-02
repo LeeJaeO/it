@@ -65,3 +65,72 @@ CPU 환경에서도 실시간 처리가 가능할 만큼 가볍고 빠릅니다.
 
 # 가상 환경 활성화 (Windows)
 .\venv\Scripts\activate
+
+
+# 2. 얼굴 인식 학교 출입 시스템 (Face Recognition School Access System)
+
+**Azure Kinect DK**의 심도(Depth) 센서와 **dlib** 기반의 얼굴 인식을 결합하여, 교내 재학생이 멈추지 않고 자연스럽게 통과할 수 있는 **Walk-Through 출입 통제 시스템**입니다.
+
+##  프로젝트 배경 (Persona & Problem)
+
+###  페르소나 A (대학생)
+> "등교 중인데 양손 가득 짐이 너무 많아요. 강의동에 들어가려는데 학생증을 꺼내려고 짐을 다 바닥에 내려놓고, 지갑을 찾아서 태깅하느라 뒤에 줄이 길어졌습니다."
+
+###  기존 시스템의 문제점
+* **물리적 접촉 필수:** 짐이 많거나 손이 부족한 상황에서도 반드시 카드나 스마트폰을 꺼내야 함.
+* **병목 현상:** 한 명씩 멈춰서 태깅하는 과정에서 출입구 혼잡 발생.
+* **매체 의존:** 학생증 분실 시 출입 불가.
+
+### 본 프로젝트의 솔루션
+* **Hands-Free:** 짐을 든 상태 그대로 카메라만 바라보면 인증 완료.
+* **Distance Filtering:** 사용자가 출입 의도를 가지고 문 앞(유효 거리)에 접근했을 때만 정확히 인식.
+* **Existing DB Utilization:** 별도의 생체 등록 없이, 입학 시 제출한 증명사진 DB를 활용하여 즉시 도입 가능.
+
+---
+
+##  시스템 아키텍처 (Technical Approach)
+
+### 1. 얼굴 인식 및 신원 확인 (Face Recognition)
+교내 시스템에 등록된 **재학생 DB(입학 증명사진)**와 실시간 카메라 영상을 대조하여 신원을 확인합니다.
+* [cite_start]**라이브러리:** `face_recognition` (dlib 기반) [cite: 19]
+* [cite_start]**알고리즘:** 1. 등록된 증명사진(`student.jpg`)에서 얼굴 특징을 128차원 벡터(Embedding)로 변환하여 저장. [cite: 10, 18, 22]
+  2. [cite_start]실시간 영상 속 얼굴을 벡터화하여 저장된 데이터와 유클리드 거리(유사도) 비교. [cite: 23]
+  3. [cite_start]유사도가 임계값(Threshold) 이내일 경우 동일 인물로 판정. [cite: 26, 37]
+
+### 2. 거리 기반 필터링 (Distance Filtering using Depth)
+[cite_start]단순히 얼굴만 인식하는 것이 아니라, **Azure Kinect의 Depth 센서**를 활용하여 유효한 위치에 있는 사람만 선별합니다. [cite: 121, 169]
+* [cite_start]**기능:** 카메라로부터 **0.3m ~ 0.5m (설정 가능)** 거리 내에 진입한 사용자만 인식. [cite: 206]
+* [cite_start]**효과:** * 뒤쪽 배경에 지나가는 사람(Background Noise) 오인식 방지. [cite: 279]
+  * [cite_start]사용자가 문 앞에 다가왔을 때만 작동하여 시스템 리소스 절약 및 UX 개선. [cite: 226, 237]
+
+---
+
+##  개발 환경 및 하드웨어 (Environment)
+
+### Hardware
+* **Camera:** Azure Kinect DK (RGB-D Camera)
+* **Connection:** USB 3.0 (Data) & Power Adapter required
+
+### Tech Stack
+* **Language:** Python 3.10+
+* **Libraries:**
+  * `pyk4a`: Azure Kinect SDK Wrapper (Camera Control)
+  * `opencv-python`: Image Processing & Visualization
+  * [cite_start]`face_recognition` & `dlib`: Face Identification [cite: 17, 19]
+  * `numpy`: Matrix Calculation
+
+---
+
+##  실행 방법 (How to Run)
+
+### 1. 사전 준비 (Prerequisites)
+* **Azure Kinect SDK v1.4.1** 설치
+* **C++ Build Tools** 설치 (dlib 컴파일용)
+* 프로젝트 폴더(`C:\kinect_project`)에 본인의 정면 사진을 **`student.jpg`** 이름으로 저장.
+
+### 2. 가상 환경 설정 및 패키지 설치
+```bash
+python -m venv venv
+.\venv\Scripts\activate
+pip install opencv-python pyk4a face_recognition numpy
+# dlib 설치 실패 시 .whl 파일로 수동 설치 권장
