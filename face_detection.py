@@ -12,7 +12,7 @@ MIN_DISTANCE = 0.3   # m
 MAX_DISTANCE = 0.5   # m
 
 # ─── [설정: 안티 스푸핑(실물 vs 사진) 임계값] ───
-DEPTH_STD_THRESHOLD_MM = 7.0    # 15mm (환경에 맞게 튜닝)
+DEPTH_STD_THRESHOLD_MM = 3.0    # 15mm (환경에 맞게 튜닝)
 MIN_VALID_DEPTH_PIXELS = 80      # 깊이 패치 내 최소 유효 픽셀 수
 
 # ─── [설정: 한양대 학생 얼굴 DB 폴더] ───
