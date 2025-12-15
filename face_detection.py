@@ -12,12 +12,12 @@ MIN_DISTANCE = 0.3   # m
 MAX_DISTANCE = 0.5   # m
 
 # ─── [설정: 안티 스푸핑(실물 vs 사진) 임계값] ───
-DEPTH_STD_THRESHOLD_MM = 15.0    # 15mm (환경에 맞게 튜닝)
+DEPTH_STD_THRESHOLD_MM = 7.0    # 15mm (환경에 맞게 튜닝)
 MIN_VALID_DEPTH_PIXELS = 80      # 깊이 패치 내 최소 유효 픽셀 수
 
 # ─── [설정: 한양대 학생 얼굴 DB 폴더] ───
 HYU_STUDENTS_DIR = "./hyu_students"   # ★★ 여기를 본인 폴더 경로로 변경
-FACE_MATCH_THRESHOLD = 0.5            # ★★ 얼굴 매칭 임계값 (작을수록 엄격)
+FACE_MATCH_THRESHOLD = 0.4            # ★★ 얼굴 매칭 임계값 (작을수록 엄격)
 
 # ─── [전역: 한양대 학생 임베딩 DB] ───
 KNOWN_FACE_ENCODINGS = []
